@@ -180,5 +180,9 @@ class User extends EntityAbstract
     {
         return $this->getProfile()->getFirstName();
     }
-
+	
+	public function getLastName()
+    {
+        return $this->getProfile()->getLastName();
+    }
 }

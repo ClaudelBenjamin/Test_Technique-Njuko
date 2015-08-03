@@ -76,8 +76,9 @@ class UserController extends AbstractActionController
 
         $form->bind($userToEdit);
         $form->get('firstname')->setValue($userToEdit->getFirstname());
-
-        $data = $this->prg();
+		$form->get('lastname')->setValue($userToEdit->getLastname());
+        
+		$data = $this->prg();
 
         if ($data instanceof \Zend\Http\PhpEnvironment\Response) {
             return $data;
