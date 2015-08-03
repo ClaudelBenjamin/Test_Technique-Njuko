@@ -49,4 +49,5 @@ class UserService implements ServiceManagerAwareInterface
         $em->remove($user);
         $em->flush();
     }
+	
 }

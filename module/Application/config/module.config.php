@@ -63,6 +63,15 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
+					'sort' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/sort/:attribut',
+                            'defaults' => array(
+                                'action'    =>  'sort'
+                            ),
+                        ),
+                    ),
                     'add' => array(
                         'type'    => 'Literal',
                         'options' => array(

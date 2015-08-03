@@ -26,6 +26,21 @@ class UserController extends AbstractActionController
         ));
     }
 
+	public function sortAction()
+    {
+		// $users = $this->select()       
+           // ->from(array('p'=>'profile'), array('u'=>'user'))
+           // ->order('$this->params()->fromRoute(\'attribut\')')   
+           // ->order('RAND()');
+        $users = $this->getServiceLocator()->get('entity_manager')
+            ->getRepository('Application\Entity\User')
+			->findBy(array(),array($this->params()->fromRoute('attribut') => 'Desc'));
+
+        return new ViewModel(array(
+            'users' =>  $users
+        ));
+    }
+	
     public function addAction()
     {
         /* @var $form \Application\Form\UserForm */
