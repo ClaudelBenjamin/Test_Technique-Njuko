@@ -9,6 +9,8 @@ return array(
     '__user_id' =>  '#',
     '__user_firstname'  =>  'Prénom',
     '__user_lastname'   =>  'Nom',
+	'__user_address'   =>  'Adresse postale',
+	'__user_birth_date'   =>  'Date de naissance',
     '__user_email'  =>  'Adresse email',
 
     //Form User
@@ -16,6 +18,8 @@ return array(
     '__label_user_firstname'    =>  'Prénom',
     '__label_user_lastname'     =>  'Nom',
     '__label_user_email'        =>  'Email',
+	'__label_user_address'        =>  'Adresse postale',
+	'__label_user_birth_date'   =>  'Date de naissance',
     '__label_user_password'     =>  'Password',
     '__save'                    =>  'Enregistrer',
 

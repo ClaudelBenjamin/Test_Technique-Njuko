@@ -28,6 +28,22 @@ echo $this->form()->openTag($form);
         </div>
     </div>
 
+	<div class="control-group">
+        <?= $this->formLabel($form->get('address')); ?>
+        <div class="controls">
+            <?= $this->formElement($form->get('address')); ?>
+            <span class="help-block errors"><?= $this->formElementErrors($form->get('address')); ?></span>
+        </div>
+    </div>
+	
+	<div class="control-group">
+        <?= $this->formLabel($form->get('birth_date')); ?>
+        <div class="controls">
+            <?= $this->formElement($form->get('birth_date')); ?>
+            <span class="help-block errors"><?= $this->formElementErrors($form->get('birth_date')); ?></span>
+        </div>
+    </div>
+	
     <div class="control-group">
         <?= $this->formLabel($form->get('password')); ?>
         <div class="controls">
