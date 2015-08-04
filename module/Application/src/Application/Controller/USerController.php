@@ -28,14 +28,13 @@ class UserController extends AbstractActionController
 
 	public function sortAction()
     {
-		// $users = $this->select()       
-           // ->from(array('p'=>'profile'), array('u'=>'user'))
-           // ->order('$this->params()->fromRoute(\'attribut\')')   
-           // ->order('RAND()');
-        $users = $this->getServiceLocator()->get('entity_manager')
-            ->getRepository('Application\Entity\User')
-			->findBy(array(),array($this->params()->fromRoute('attribut') => 'Desc'));
-
+        $rep = $this->getServiceLocator()->get('entity_manager')
+            ->getRepository('Application\Entity\User');
+			if ($this->params()->fromRoute('attribut')=='id' || $this->params()->fromRoute('attribut')=='email')
+				$users = $rep->findBy(array(),array($this->params()->fromRoute('attribut') => 'asc'));
+			else
+				$users = $rep->findAll();
+			
         return new ViewModel(array(
             'users' =>  $users
         ));

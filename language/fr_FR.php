@@ -1,6 +1,6 @@
 <?php
 return array(
-    '__users_list'  =>  'Liste des utilisaturs',
+    '__users_list'  =>  'Liste des utilisateurs',
 
     '__add_user'    =>  'Ajouter un utilisateur',
     '__remove_user' =>  'Supprimer',
