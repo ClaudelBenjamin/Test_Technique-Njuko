@@ -30,11 +30,32 @@ class UserController extends AbstractActionController
     {
         $rep = $this->getServiceLocator()->get('entity_manager')
             ->getRepository('Application\Entity\User');
-			if ($this->params()->fromRoute('attribut')=='id' || $this->params()->fromRoute('attribut')=='email')
+			if ($this->params()->fromRoute('attribut')=='id' || $this->params()->fromRoute('attribut')=='email'){
 				$users = $rep->findBy(array(),array($this->params()->fromRoute('attribut') => 'asc'));
-			else
-				$users = $rep->findAll();
-			
+			}else{
+				$queryBuilder = $this->getServiceLocator()->get('entity_manager')->createQueryBuilder();
+				$queryBuilder->select('u.id, u.email, p.lastName, p.firstName,p.address, p.birth_date')
+					->from('Application\Entity\User', 'u')
+					->from('Application\Entity\Profile', 'p')
+					->where('u.profile = p.id')
+					->orderby('p.'.$this->params()->fromRoute('attribut'));
+				$u = $queryBuilder->getQuery()
+					->getResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
+				$users=array();
+				$i=0;
+				foreach($u as $tmp){
+					$users[$i]=array('id'=>$tmp['id'],
+								 'email'=>$tmp['email'],
+								 'profile'=>array('lastname'=>$tmp['lastName'],
+												  'firstname'=>$tmp['firstName'],
+												  'address'=>$tmp['address'],
+												  'birth_date'=>$tmp['birth_date'],
+												 )
+								);
+					$i++;
+				}
+			}
+		
         return new ViewModel(array(
             'users' =>  $users
         ));
